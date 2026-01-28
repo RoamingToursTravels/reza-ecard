@@ -1,0 +1,1043 @@
+/* E-Card Styles - Digital Business Card */
+/* Author: M S Kamran */
+/* Organization: Roaming BD */
+
+/* ===== GLOBAL STYLES ===== */
+.navbar, footer {
+    display: none !important;
+}
+
+/* ===== CSS VARIABLES ===== */
+body {
+    font-family: 'Poppins', sans-serif;
+    --primary-color: #007bff; /* Blue from image */
+    --secondary-color: #e9ecef; /* Light gray for contact items */
+    --accent-color: #007bff; /* Blue */
+    --bg-primary: #ffffff; /* White background for card */
+    --bg-secondary: #f8f9fa; /* Slightly off-white for contact box */
+    --text-primary: #343a40; /* Dark text */
+    --text-secondary: #6c757d; /* Muted text */
+    --text-tertiary: #999999; /* Even more muted gray */
+    --border-color: #ced4da; /* Light border */
+    --shadow-color: rgba(0, 0, 0, 0.05);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== DARK MODE VARIABLES ===== */
+body.dark-mode {
+    --primary-color: #2c3e50; /* Dark Navy Blue */
+    --secondary-color: #34495e; /* Slightly lighter navy */
+    --accent-color: #3498db; /* A vibrant blue for accents */
+    --bg-primary: rgba(44, 62, 80, 0.9); /* Dark navy with transparency */
+    --bg-secondary: rgba(52, 73, 94, 0.95); /* Lighter navy with transparency */
+    --text-primary: #f8f9fa; /* Lighter text for main text */
+    --text-secondary: #e9ecef; /* Lighter muted gray for secondary text */
+    --text-tertiary: #ced4da; /* Lighter muted gray for tertiary text */
+    --border-color: rgba(52, 73, 94, 0.5); /* Border color from secondary bg */
+    --shadow-color: rgba(23, 32, 42, 0.5); /* Darker shadow */
+}
+
+/* ===== BACKGROUND PATTERN ===== */
+.ecard-bg-pattern {
+    background: linear-gradient(135deg, #007bff, #0056b3); /* Blue gradient from image */
+    min-height: 100vh;
+    padding: 20px;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    /* Adding a subtle glossy effect */
+    box-shadow: inset 0 0 50px rgba(255, 255, 255, 0.05);
+}
+
+.ecard-bg-pattern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('Photos/dark-pattern.svg'); /* Elegant dark pattern */
+    background-size: cover;
+    opacity: 0.05; /* Even more subtle opacity */
+    pointer-events: none;
+}
+
+/* ===== DARK MODE TOGGLE BUTTON ===== */
+.dark-mode-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.btn-dark-toggle {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    color: #333;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-dark-toggle:hover {
+    background: rgba(255, 255, 255, 1);
+    color: #333;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+body.dark-mode .btn-dark-toggle {
+    background: rgba(40, 40, 40, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #e0e0e0;
+}
+
+body.dark-mode .btn-dark-toggle:hover {
+    background: rgba(60, 60, 60, 1);
+    color: #fff;
+}
+
+/* ===== MAIN CARD STYLES ===== */
+.ecard-main-card {
+    background: var(--bg-primary);
+    border-radius: 20px;
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 15px 40px var(--shadow-color);
+    color: var(--text-primary);
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+    transform: translateZ(0);
+    position: relative;
+    max-width: 350px; /* Slightly reduced max-width */
+    width: 100%;
+    padding: 20px; /* Reduced padding */
+}
+
+/* ===== LOGO STYLES ===== */
+.ecard-logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Space between logos */
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.ecard-logo {
+    width: 65px; /* Fixed width for equal sizing */
+    height: 50px; /* Fixed height for equal sizing */
+    object-fit: contain; /* Maintain aspect ratio */
+    transition: transform 0.3s ease;
+}
+
+.ecard-logo:hover {
+    transform: scale(1.05);
+}
+
+.ecard-photo-box {
+    width: 120px; /* Reduced size */
+    height: 120px; /* Reduced size */
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 15px auto; /* Reduced margin */
+    border: 4px solid var(--primary-color); /* Reduced border */
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.3); /* Reduced shadow */
+    background-color: #007bff; /* Blue background for the circle */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ecard-photo-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ecard-photo-box::before {
+    content: none; /* Remove the Font Awesome user icon */
+}
+/* ===== PROFILE SECTION STYLES ===== */
+.ecard-profile-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.ecard-photo-box {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 20px auto;
+    border: 5px solid var(--primary-color);
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.3);
+    background-color: #007bff; /* Blue background for the circle */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.ecard-photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ecard-name {
+    font-size: 1.8rem; /* Reduced font size */
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 3px; /* Reduced margin */
+.ecard-title {
+    font-size: 1rem; /* Reduced font size */
+    font-weight: 400;
+    color: var(--text-secondary); /* Changed to text-secondary */
+}   margin-bottom: 15px;
+}
+
+/* Removed ecard-description as it's no longer needed */
+
+/* ===== CONTACT BOX STYLES ===== */
+.ecard-contact-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: var(--bg-secondary);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.ecard-contact-item {
+    background: #f8f9fa; /* Light background for items */
+    border-radius: 8px;
+    padding: 12px 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    border: 1px solid #dee2e6; /* Light border */
+}
+
+body.dark-mode .ecard-contact-item {
+    background: var(--secondary-color);
+    color: var(--text-primary);
+}
+
+.ecard-contact-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.ecard-contact-item a {
+    display: flex;
+    align-items: center;
+    color: var(--text-primary); /* Ensure text color is readable */
+    text-decoration: none;
+}
+
+.ecard-contact-item a i {
+    color: var(--primary-color); /* Icon color */
+    font-size: 1.2rem;
+    width: 30px; /* Fixed width for icons */
+    text-align: center;
+}
+
+/* ===== ADDRESS SECTION STYLES (Hover to View) ===== */
+.ecard-address-toggle {
+    cursor: pointer;
+}
+
+.ecard-address-details {
+    margin-top: 10px;
+    padding: 10px;
+    background: var(--bg-secondary);
+    border-radius: 5px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    border: 1px solid var(--border-color);
+}
+
+/* ===== SAVE CONTACT BUTTON STYLES ===== */
+.ecard-save-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+}
+
+.ecard-save-btn:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+}
+
+/* ===== ADDRESS SECTION STYLES (Hover to View) ===== */
+.address-container {
+  font-family: 'Segoe UI', sans-serif;
+  max-width: 600px;
+  margin: 0 auto;
+  color: var(--text-primary);
+}
+
+.address-item {
+  margin-bottom: 15px;
+  cursor: pointer;
+  background: var(--bg-secondary);
+  border-radius: 10px;
+  padding: 15px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.address-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.address-title {
+  font-weight: 600;
+  color: var(--accent-color); /* Using accent color for titles */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+
+.address-details {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 10px;
+  background: var(--bg-primary);
+  border-radius: 4px;
+  margin-top: 5px;
+  color: var(--text-secondary);
+  transition: max-height 0.5s ease-out, padding 0.5s ease-out, opacity 0.5s ease-out;
+  opacity: 0;
+}
+
+.address-item:hover .address-details {
+  max-height: 100px; /* Adjust as needed to fit content */
+  padding: 10px;
+  opacity: 1;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.ecard-contact i {
+    color: var(--accent-color); /* Use accent color for icons */
+    width: 20px;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+}
+
+.ecard-address-title {
+    font-size: 1rem; /* Slightly smaller font */
+    font-weight: 600;
+    color: var(--accent-color); /* Use accent color for titles */
+    margin-bottom: 8px; /* More compact spacing */
+}
+
+.ecard-address {
+    font-size: 0.85rem; /* Slightly smaller font */
+    font-weight: 300;
+    color: var(--text-tertiary); /* More muted text */
+    line-height: 1.3; /* More compact line height */
+    max-height: 2.6em; /* Show only 2 lines initially */
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.ecard-address-box:hover .ecard-address {
+    max-height: 10em; /* Expand on hover */
+}
+
+.ecard-website {
+    font-size: 0.95rem; /* Slightly smaller font */
+    font-weight: 400;
+    color: var(--text-secondary);
+    line-height: 1.4; /* More compact line height */
+}
+
+.ecard-website a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.ecard-website a:hover {
+    color: var(--accent-color); /* Use accent color on hover */
+}
+
+.ecard-website i {
+    color: var(--accent-color); /* Use accent color for icons */
+}
+
+/* Prevent blue link colors in Safari and other browsers */
+.ecard-contact a,
+.ecard-contact a:link,
+.ecard-contact a:visited,
+.ecard-contact a:hover,
+.ecard-contact a:active {
+    color: inherit !important;
+    text-decoration: none !important;
+    -webkit-text-fill-color: inherit !important;
+    -webkit-appearance: none !important;
+}
+
+.ecard-contact a:hover {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+/* ===== BUTTON STYLES ===== */
+.ecard-save-btn, .ecard-social-btn {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    color: white;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.ecard-save-btn:hover, .ecard-social-btn:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+    transform: translateY(-2px);
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.ecard-save-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    border-radius: 50px;
+    padding: 14px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.ecard-social-btn {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    font-size: 1.6rem;
+    margin: 0 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Prevent blue link colors for social buttons in Safari */
+.ecard-social-btn,
+.ecard-social-btn:link,
+.ecard-social-btn:visited,
+.ecard-social-btn:active {
+    color: white !important;
+    text-decoration: none !important;
+    -webkit-text-fill-color: white !important;
+    -webkit-appearance: none !important;
+}
+
+/* ===== FOOTER STYLES ===== */
+.ecard-footer-box {
+    text-align: center;
+    margin-top: 15px; /* Adjusted margin */
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+}
+
+.ecard-save-btn {
+    background: var(--primary-color);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+    display: inline-block;
+    width: auto;
+}
+
+.ecard-save-btn:hover {
+    background: #2980b9; /* Darker blue on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(52, 152, 219, 0.4);
+}
+
+.ecard-website a {
+    color: var(--text-secondary);
+    font-weight: 400;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.ecard-website a:hover {
+    color: var(--text-primary);
+}
+
+.ecard-address-link {
+    color: var(--text-tertiary);
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-block;
+}
+
+.ecard-address-link:hover {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transform: translateY(-1px);
+}
+
+.ecard-address-link i {
+    color: var(--accent-color);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ecard-address-link:hover i {
+    color: var(--primary-color);
+    transform: scale(1.1);
+}
+
+/* ===== ANIMATION STYLES ===== */
+.animate-element {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-element.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.ecard-main-card {
+    opacity: 0;
+    transform: scale(0.9);
+    animation: cardFadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes cardFadeIn {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.ecard-photo-img.animate-element {
+    transform: translateX(-50px) scale(0.8);
+}
+
+.ecard-photo-img.animate-element.animate-in {
+    transform: translateX(0) scale(1);
+}
+
+.ecard-name.animate-element {
+    transform: translateX(50px);
+}
+
+.ecard-name.animate-element.animate-in {
+    transform: translateX(0);
+}
+
+.ecard-social-btn.animate-element {
+    transform: translateY(30px) scale(0.8);
+}
+
+.ecard-social-btn.animate-element.animate-in {
+    transform: translateY(0) scale(1);
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOutRight {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(100%); opacity: 0; }
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+/* Base responsive styles */
+.ecard-main-card {
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    min-height: auto;
+    box-sizing: border-box;
+}
+
+/* Prevent text overflow and ensure proper mobile display */
+.ecard-contact, .ecard-address, .ecard-name, .ecard-role, .ecard-department {
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+    overflow-wrap: break-word;
+}
+
+/* Ensure images are responsive */
+.ecard-logo, .ecard-photo-img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Prevent horizontal overflow */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.ecard-main-card {
+    max-width: 100vw;
+    overflow: hidden;
+}
+
+/* Flexible container */
+.ecard-bg-pattern {
+    padding: 10px;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Ensure proper spacing on all devices */
+.ecard-contact-box, .ecard-save-btn, .ecard-social-row, .ecard-footer-box {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Touch-friendly buttons for all screen sizes */
+.ecard-save-btn {
+    min-height: 44px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.ecard-social-btn {
+    min-height: 44px;
+    min-width: 44px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Prevent zoom on input focus (iOS) */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+    select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] {
+        font-size: 16px;
+    }
+}
+
+/* Safe area for devices with notches */
+@supports (padding: max(0px)) {
+    .ecard-bg-pattern {
+        padding-left: max(10px, env(safe-area-inset-left));
+        padding-right: max(10px, env(safe-area-inset-right));
+        padding-top: max(10px, env(safe-area-inset-top));
+        padding-bottom: max(10px, env(safe-area-inset-bottom));
+    }
+}
+
+/* Desktop and large tablets (768px and up) */
+@media (min-width: 768px) {
+    .ecard-main-card {
+        max-width: 450px;
+        padding: 2rem;
+    }
+    
+    .ecard-bg-pattern {
+        padding: 20px;
+    }
+}
+
+/* Small tablets (576px to 767px) */
+@media (max-width: 767px) and (min-width: 576px) {
+    .ecard-main-card {
+        width: 95%;
+        max-width: 500px;
+        padding: 1.5rem;
+    }
+    
+    .ecard-logo-container {
+        gap: 15px;
+    }
+    
+    .ecard-logo {
+         width: 55px;
+         height: 42px;
+     }
+    
+    .ecard-photo-img {
+        width: 130px;
+        height: 130px;
+    }
+    
+    .ecard-name {
+        font-size: 1.6rem;
+    }
+    
+    .ecard-social-btn {
+        width: 50px;
+        height: 50px;
+        margin: 0 10px;
+        font-size: 1.5rem;
+    }
+}
+
+/* Large phones (480px to 575px) */
+@media (max-width: 575px) and (min-width: 480px) {
+    .ecard-main-card {
+        width: 95%;
+        padding: 1.25rem;
+        border-radius: 25px;
+    }
+    
+    .ecard-logo-container {
+        gap: 12px;
+    }
+    
+    .ecard-logo {
+         width: 50px;
+         height: 38px;
+     }
+    
+    .ecard-photo-img {
+        width: 120px;
+        height: 120px;
+        border-radius: 18px;
+    }
+    
+    .ecard-name {
+        font-size: 1.5rem;
+        line-height: 1.3;
+    }
+    
+    .ecard-role, .ecard-department {
+        font-size: 0.95rem;
+    }
+    
+    .ecard-contact {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .ecard-save-btn {
+        padding: 12px 24px;
+        font-size: 1rem;
+    }
+    
+    .ecard-social-btn {
+        width: 48px;
+        height: 48px;
+        margin: 0 8px;
+        font-size: 1.4rem;
+    }
+    
+    .ecard-footer-box {
+        font-size: 0.85rem;
+    }
+}
+
+/* Small phones (320px to 479px) */
+@media (max-width: 479px) {
+    .ecard-bg-pattern {
+        padding: 8px;
+    }
+    
+    .ecard-main-card {
+        width: 98%;
+        padding: 1rem;
+        border-radius: 20px;
+        min-height: auto;
+    }
+    
+    .ecard-logo-container {
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+    
+    .ecard-logo {
+         width: 45px;
+         height: 34px;
+     }
+    
+    .ecard-profile-section {
+         flex-direction: row;
+         align-items: center;
+         gap: 0.5rem;
+     }
+     
+     .ecard-photo-img {
+        width: 90px;
+        height: 90px;
+        border-radius: 14px;
+        flex-shrink: 0;
+    }
+     
+     .ecard-name-title {
+         text-align: left;
+         flex: 1;
+         min-width: 0;
+     }
+    
+    .ecard-name {
+        font-size: 1.3rem;
+        line-height: 1.2;
+        margin-bottom: 0.5rem;
+    }
+    
+    .ecard-role, .ecard-department {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+    
+    .ecard-contact-box {
+        padding: 1rem;
+        border-radius: 15px;
+    }
+    
+    .ecard-contact {
+        font-size: 0.85rem;
+        margin-bottom: 0.75rem;
+        line-height: 1.4;
+    }
+    
+    .ecard-contact:last-child {
+        margin-bottom: 0;
+    }
+    
+    .ecard-save-btn {
+        padding: 10px 20px;
+        font-size: 0.95rem;
+        border-radius: 25px;
+    }
+    
+    .ecard-social-btn {
+        width: 44px;
+        height: 44px;
+        margin: 0 6px;
+        font-size: 1.2rem;
+    }
+    
+    .ecard-footer-box {
+        font-size: 0.8rem;
+        line-height: 1.4;
+    }
+    
+    .ecard-address {
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* Very small screens (below 320px) */
+@media (max-width: 319px) {
+    .ecard-bg-pattern {
+        padding: 3px;
+    }
+    
+    .ecard-main-card {
+        width: 98%;
+        padding: 0.5rem;
+        border-radius: 15px;
+        min-width: 280px;
+    }
+    
+    .ecard-logo {
+        width: 40px;
+        height: 30px;
+    }
+    
+    .ecard-photo-img {
+        width: 70px;
+        height: 70px;
+        border-radius: 10px;
+    }
+    
+    .ecard-name {
+        font-size: 1.1rem;
+        line-height: 1.1;
+    }
+    
+    .ecard-role, .ecard-department {
+        font-size: 0.8rem;
+    }
+    
+    .ecard-contact {
+        font-size: 0.75rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .ecard-save-btn {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+        min-height: 44px; /* Touch-friendly */
+    }
+    
+    .ecard-social-btn {
+        width: 38px;
+        height: 38px;
+        margin: 0 3px;
+        font-size: 1rem;
+        min-height: 44px; /* Touch-friendly */
+        min-width: 44px;
+    }
+    
+    .ecard-footer-box {
+        font-size: 0.7rem;
+    }
+}
+
+/* Extra small phones (below 360px) */
+@media (max-width: 359px) and (min-width: 320px) {
+    .ecard-bg-pattern {
+        padding: 5px;
+    }
+    
+    .ecard-main-card {
+        width: 99%;
+        padding: 0.75rem;
+        border-radius: 18px;
+    }
+    
+    .ecard-logo {
+        width: 42px;
+        height: 32px;
+    }
+    
+    .ecard-profile-section {
+        flex-direction: row;
+        align-items: center;
+        gap: 0.4rem;
+    }
+    
+    .ecard-photo-img {
+        width: 80px;
+        height: 80px;
+        border-radius: 12px;
+        flex-shrink: 0;
+    }
+    
+    .ecard-name-title {
+        text-align: left;
+        flex: 1;
+        min-width: 0;
+    }
+    
+    .ecard-name {
+        font-size: 1.2rem;
+    }
+    
+    .ecard-role, .ecard-department {
+        font-size: 0.85rem;
+    }
+    
+    .ecard-contact {
+        font-size: 0.8rem;
+    }
+    
+    .ecard-save-btn {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+    
+    .ecard-social-btn {
+        width: 40px;
+        height: 40px;
+        margin: 0 4px;
+        font-size: 1.1rem;
+    }
+    
+    .ecard-footer-box {
+        font-size: 0.75rem;
+    }
+}
+
+/* Landscape orientation adjustments for phones */
+@media (max-height: 500px) and (orientation: landscape) {
+    .ecard-bg-pattern {
+        padding: 5px;
+    }
+    
+    .ecard-main-card {
+        padding: 0.75rem;
+        max-height: 95vh;
+        overflow-y: auto;
+    }
+    
+    .ecard-logo {
+        width: 50px;
+        height: 38px;
+        margin-bottom: 0.5rem;
+    }
+    
+    .ecard-profile-section {
+        margin-bottom: 0.5rem;
+    }
+    
+    .ecard-photo-img {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .ecard-name {
+        font-size: 1.1rem;
+        margin-bottom: 0.25rem;
+    }
+    
+    .ecard-role, .ecard-department {
+        font-size: 0.8rem;
+        margin-bottom: 0.1rem;
+    }
+    
+    .ecard-contact-box {
+        padding: 0.75rem;
+        margin: 0.5rem 0;
+    }
+    
+    .ecard-contact {
+        font-size: 0.75rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .ecard-save-btn {
+        padding: 6px 16px;
+        font-size: 0.85rem;
+        margin: 0.5rem 0;
+    }
+    
+    .ecard-social-btn {
+        width: 36px;
+        height: 36px;
+        margin: 0 3px;
+        font-size: 1rem;
+    }
+    
+    .ecard-footer-box {
+        font-size: 0.7rem;
+        margin-top: 0.5rem;
+    }
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Digital Business Card - S.M. AZIZUL HAKIM">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>E-Card - Md. Rezaul Awal</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="Photos/Derbana Logo.png">
+    <link rel="apple-touch-icon" href="Photos/Derbana Logo.png">
+    <link rel="shortcut icon" href="Photos/Derbana Logo.png">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="Photos/Derbana Logo.png" as="image">
+    
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" as="style">
+    
+    <!-- External CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./ecard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Dark Mode Toggle Button -->
+    <div class="dark-mode-toggle">
+        <button id="darkModeToggle" class="btn btn-dark-toggle" title="Toggle Dark Mode">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <div class="ecard-bg-pattern d-flex align-items-center justify-content-center min-vh-100">
+        <div class="ecard-main-card p-4">
+            <div class="ecard-top mb-3 animate-element" data-delay="0">
+                <div class="ecard-profile-section text-center animate-element" data-delay="200">
+                    <div class="ecard-logo-container">
+                        <!-- Your comment goes here 
+<img src="Photos/Black-Rock Logo.png" alt="Black-Rock Logo" class="ecard-logo animate-element" data-delay="250"> -->
+                        <img src="Photos/Derbana Logo.png" alt="Derbana Logo" class="ecard-logo animate-element" data-delay="300">
+                    </div>
+                    <div class="ecard-photo-box mb-3">
+                        <img src="Photos/reza.png" alt="Md. Rezaul Awal" class="ecard-photo-img animate-element" data-delay="300" width="150" height="150" loading="eager">
+                    </div>
+                    <h2 class="ecard-name animate-element" data-delay="350">Md. Rezaul Awal</h2>
+                    <p class="ecard-title animate-element" data-delay="400">Lead Auditor</p>
+                </div>
+            </div>
+
+            <div class="ecard-contact-box p-3 my-3 animate-element" data-delay="700">
+                <div class="ecard-contact-item animate-element" data-delay="750">
+                    <a href="tel:+8801737344555">
+                        <i class="fas fa-phone me-2"></i>
+                        <span>+8801737-344555</span>
+                    </a>
+                </div>
+
+                <div class="ecard-contact-item animate-element" data-delay="800">
+                    <a href="mailto:reza@derbana.com">
+                        <i class="fas fa-envelope me-2"></i>
+                        <span>reza@derbana.com</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="ecard-save-btn-container text-center mt-3 animate-element" data-delay="1200">
+                <button id="saveContactBtn" class="ecard-save-btn btn btn-primary w-100">Save Contact</button>
+            </div>
+
+
+
+
+
+            <div class="ecard-footer-box text-center mt-auto animate-element" data-delay="1500">
+                <!-- Optional: Add a small footer text here if needed -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" defer></script>
+
+    
+    <!-- Custom JavaScript -->
+    <script src="./ecard.js" defer></script>
+</body>
+</html>
