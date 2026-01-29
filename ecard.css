@@ -133,8 +133,8 @@ body.dark-mode .btn-dark-toggle:hover {
 }
 
 .ecard-logo {
-    width: 65px; /* Fixed width for equal sizing */
-    height: 50px; /* Fixed height for equal sizing */
+    width: 185px; /* Fixed width for equal sizing */
+    height: 180px; /* Fixed height for equal sizing */
     object-fit: contain; /* Maintain aspect ratio */
     transition: transform 0.3s ease;
 }
